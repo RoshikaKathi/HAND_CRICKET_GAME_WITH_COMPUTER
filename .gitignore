@@ -1,129 +1,167 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+print("Welcome to Hand Cricket Game with Computer")
+import random
+ 
+def wanna_play():
+    w = input('Do u wanna play ? (yes/no):').lower()
+    if w == 'yes':
+        main_game()
+    elif w == 'no':
+        exit()
+    else:
+        print('Invalid input.Please try again')
+        wanna_play()
+ 
+def main_game():
+    print('''There are some rules:-
+1. you can only enter 1 and 2 for the toss
+2. you can enter numbers from 1 to 6 while batting or balling
+if you dont follow these the game will restart''')
+    
+    def bat():  
+        print('The computer is bowling')
+        total = 0
+        while (True):
+ 
+            match = random.randint(1, 6)
+            computer = random.randint(1, 6)
+            player = int(input("Play your shot: "))
+            if player > 6:
+                print('Not allowed to enter numbers more than 6 .The game will restart now')
+                toss()
+            print("Computer plays: ", computer)
+            total = total + player
+ 
+            if (computer == player):
+                print("Same Numbers --> OUT !!!")
+                print("Your total runs =", total)
+                break
+ 
+        print('the computer needs ', total+1, 'runs to win!')
+ 
+        print('it is computers time to bat.')
+        ctotal = 0
+        while (True):
+ 
+            cmatch = random.randint(1, 6)
+            computer = random.randint(1, 6)
+            player = int(input("put your ball: "))
+            if player > 6:
+                print('Not allowed to enter numbers more than 6. The game will restart now')
+                toss()
+            print("Computer plays: ", computer)
+            ctotal = ctotal + computer
+            
+ 
+            if (computer == player):
+                print("Smae Number --> OUT !!!")
+                print("computer's total runs =", ctotal)
+                if ctotal > total:
+                    print('you lose!')
+                elif total > ctotal:
+                    print('you win!')
+                else:
+                    print('tie!')
+                break
+            
+    def bowl():
+        print('it is computers time to bat.')
+        ctotal = 0
+        while (True):
+ 
+            cmatch = random.randint(1, 6)
+            computer = random.randint(1, 6)
+            player = int(input("put your ball: "))
+            if player > 6:
+                print('Not Aloowed to enter numbers more than 6. The game will restart now')
+                toss()
+            print("Computer plays: ", computer)
+            ctotal = ctotal + computer
+            
+            if (computer == player):
+                print("Same Number --> OUT !!!")
+                print("computer's total runs =", ctotal)
+                break
+ 
+        print('The computer is bowling')
+        total = 0
+        while (True):
+ 
+            match = random.randint(1, 6)
+            computer = random.randint(1, 6)
+            player = int(input("Play your shot: "))
+            if player > 6 :
+                print('Not allowed to enter the number more than 6. The game will restart now')
+                toss()
+            print("Computer plays: ", computer)
+            total = total + player
+ 
+            if (computer == player):
+                print("Same Number --> OUT !!!")
+                print("Your total runs =", total)
+                if ctotal > total:
+                    print('you Lost!')
+                elif total > ctotal:
+                    print('you win!')
+                else:
+                    print('tie!')
+                break
+ 
+    def toss():
+        x = input('Make a choice (odd/eve):').lower()
+        y = int(input('Enter the number to toss (1/2):'))
+        if y > 2:
+            print('You are only allowed to use 1 and 2.')
+            toss()
+        z = random.randint(1,2)
+        print('The computer has played',z,'for the toss')
+        if x == 'eve':
+            if ((y + z) % 2) == 0:
+                print('you have won the toss')
+                a = input('Batting or Bowling ? (bat/bowl)').lower()
+                if a == 'bat':
+                    bat()
+                elif a == 'bowl':
+                    bowl()
+                else:
+                    print('Invalid input.The game will restart')
+                    toss()
+            else:
+                x = random.choice(['bat','bowl'])
+                if x == 'bat':
+                    print('The computer chooses to bat!')
+                    bowl()
+                elif x == 'bowl':
+                    print('The computer chooses to bowl!')
+                    bat()
+        elif x == 'odd':
+            if ((y + z) % 2) == 0:
+                y = random.choice(['bat','bowl'])
+                if y == 'bat':
+                    print('The computer chooses to bat!')
+                    bowl()
+                elif y == 'bowl':
+                    print('The computer chooses to bowl!')
+                    bat()
+                
+            else:
+                print('you have won the toss')
+                a=input('Batting or Bowling ? (bat/bowl)').lower()
+                if a == 'bat':
+                    bat()
+                elif a == 'bowl':
+                    bowl()
+                else:
+                    print('invalid input.The game will restart')
+                    toss()
+        else:
+             print('invalid input.The game will restart')
+             toss()
+ 
+ 
+ 
+ 
+ 
+    toss()
+    wanna_play()
+ 
+main_game()
