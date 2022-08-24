@@ -36,9 +36,9 @@ if you dont follow these the game will restart''')
                 print("Your total runs =", total)
                 break
  
-        print('the computer needs ', total+1, 'runs to win!')
+        print('The computer needs ', total+1, 'runs to win!')
  
-        print('it is computers time to bat.')
+        print('It is computers time to bat.')
         ctotal = 0
         while (True):
  
@@ -53,7 +53,7 @@ if you dont follow these the game will restart''')
             
  
             if (computer == player):
-                print("Smae Number --> OUT !!!")
+                print("Same Number --> OUT !!!")
                 print("computer's total runs =", ctotal)
                 if ctotal > total:
                     print('you lose!')
@@ -72,7 +72,7 @@ if you dont follow these the game will restart''')
             computer = random.randint(1, 6)
             player = int(input("put your ball: "))
             if player > 6:
-                print('Not Aloowed to enter numbers more than 6. The game will restart now')
+                print('Not Allowed to enter numbers more than 6. The game will restart now')
                 toss()
             print("Computer plays: ", computer)
             ctotal = ctotal + computer
@@ -107,14 +107,14 @@ if you dont follow these the game will restart''')
                 break
  
     def toss():
-        x = input('Make a choice (odd/eve):').lower()
+        x = input('Make a choice (odd/even):').lower()
         y = int(input('Enter the number to toss (1/2):'))
         if y > 2:
             print('You are only allowed to use 1 and 2.')
             toss()
         z = random.randint(1,2)
         print('The computer has played',z,'for the toss')
-        if x == 'eve':
+        if x == 'even':
             if ((y + z) % 2) == 0:
                 print('you have won the toss')
                 a = input('Batting or Bowling ? (bat/bowl)').lower()
@@ -144,7 +144,7 @@ if you dont follow these the game will restart''')
                     bat()
                 
             else:
-                print('you have won the toss')
+                print('You have won the toss')
                 a=input('Batting or Bowling ? (bat/bowl)').lower()
                 if a == 'bat':
                     bat()
@@ -156,10 +156,6 @@ if you dont follow these the game will restart''')
         else:
              print('invalid input.The game will restart')
              toss()
- 
- 
- 
- 
  
     toss()
     wanna_play()
